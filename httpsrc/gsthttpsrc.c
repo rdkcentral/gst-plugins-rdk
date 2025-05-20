@@ -719,7 +719,7 @@ static void gst_http_src_set_property(GObject *object,
                   CURL_EASY_SETOPT(src->m_curl, CURLOPT_LOW_SPEED_LIMIT, 100);
                }
 
-               GST_WARNING_OBJECT(src, "GSTHTTPSRC: Changing timeout - m_timeout %d", src->m_timeout);
+               GST_WARNING_OBJECT(src, "GSTHTTPSRC: Changing timeout - m_timeout %d");
             }
             else 
             {
