@@ -840,7 +840,7 @@ static void gst_http_src_set_property(GObject *object,
 
              rc = setsockopt(src->m_socketFD, SOL_SOCKET, SO_RCVLOWAT, &lowWaterMark, sizeof(int));
              if (rc != 0)
-                 GST_ERROR_OBJECT( src, "setsockopt error %d setting SO_RCVLOWAT for socket_fd %d", rc, src->m_socketFD );
+                 GST_ERROR_OBJECT( src, "setsockopt error %d setting SO_RCVLOWAT for socket_fd %d" );
          }
       }
       break;
@@ -1373,7 +1373,7 @@ static GstFlowReturn gst_http_src_create(GstPushSrc *pushsrc, GstBuffer **outbuf
          pthread_mutex_unlock( &src->m_queueNotFullMutex );
 
          pthread_mutex_lock( &src->m_flowTimerMutex );
-         GST_DEBUG_OBJECT(src, "gst_http_src_create: src->m_currBlock %x src->m_currBlockSize %d src->m_currBlockOffset %d", src->m_currBlock, src->m_currBlockSize, src->m_currBlockOffset);//CID 343044, 341574: Data race condition (MISSING_LOCK)
+         GST_DEBUG_OBJECT(src, "gst_http_src_create: src->m_currBlock %x src->m_currBlockSize %d src->m_currBlockOffset %d", src->m_currBlock, src->m_currBlockOffset);//CID 343044, 341574: Data race condition (MISSING_LOCK)
          if ( src->m_currBlock  && ( src->m_currBlockOffset < src->m_currBlockSize ) )
          {
 #ifdef USE_GST1
